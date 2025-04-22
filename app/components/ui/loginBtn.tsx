@@ -1,4 +1,5 @@
 import { signIn } from "@/auth";
+import { Button } from "@heroui/react";
 
 export default function GoogleLoginBtn() {
     return (
@@ -9,7 +10,7 @@ export default function GoogleLoginBtn() {
             await signIn("google")
         }}
         >
-            <button type="submit" className="flex flex-row flex-nowrap gap-2 items-center justify-center w-full h-auto px-6 py-2 text-h6 font-medium bg-gray-50 hover:bg-gray-200 rounded-md drop-shadow-md transition-colors ease-in-out duration-200">
+            <Button type="submit" className="flex flex-row flex-nowrap gap-2 items-center justify-center w-full h-auto px-6 py-2 text-[1.25rem] font-medium bg-gray-50 hover:bg-gray-200/80 rounded-md drop-shadow-md transition-colors ease-in-out duration-200">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 48 48">
                     <path fill="#ffc107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917" />
                     <path fill="#ff3d00" d="m6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691" />
@@ -17,7 +18,7 @@ export default function GoogleLoginBtn() {
                     <path fill="#1976d2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917" />
                 </svg>
                 Cuenta de Google
-            </button>
+            </Button>
         </form>
     );
 }
