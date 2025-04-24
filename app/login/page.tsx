@@ -15,7 +15,13 @@ export default async function Page() {
                 loading="lazy"
             />
             <div className="flex flex-col items-center justify-center gap-5 pt-7 sm:pt-6 md:pt-0 w-full sm:w-2/3 md:w-1/2 lg:w-1/3 p-5 md:h-full">
-                <h2 className="text-h2 font-semibold text-green-600">CashBoom</h2>
+                <Image
+                    src="/images/logos/Logotipo_v1.png"
+                    alt="CashBoom Logo"
+                    width={350}
+                    height={200}
+                    loading="lazy"
+                    className="object-contain w-[200px] h-auto lg:w-[250px]" />
                 <p className="flex flex-col gap-3 justify-center text-center text-regular">
                     <strong className="text-h5">
                         ¡Bienvenido a Cash Boom!
