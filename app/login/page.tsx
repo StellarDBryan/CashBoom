@@ -5,7 +5,7 @@ import { Input, Button } from "@heroui/react";
 export default async function Page() {
 
     return (
-        <main className="flex flex-col-reverse items-center justify-start md:flex-row md:items-center gap-5 sm:pt-0 md:pt-10 md:gap-10 md:justify-center w-full md:w-auto h-auto md:h-screen mx-auto">
+        <main className="flex flex-col-reverse bg-gray-50 items-center justify-start md:flex-row md:items-center gap-5 sm:pt-0 md:pt-10 md:gap-10 md:justify-center w-full md:w-auto h-auto md:h-screen mx-auto">
             <Image
                 src="/images/common/login-img.svg"
                 alt="Login Image"
