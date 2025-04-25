@@ -7,7 +7,7 @@ export default function GoogleLoginBtn() {
         className="w-full h-auto"
         action={async () => {
             "use server"
-            await signIn("google")
+            await signIn("google", { redirectTo: "/home" })
         }}
         >
             <Button type="submit" className="flex flex-row flex-nowrap gap-2 items-center justify-center w-full h-auto px-6 py-2 text-[1.25rem] font-medium bg-gray-50 hover:bg-gray-200/80 rounded-md drop-shadow-md transition-colors ease-in-out duration-200">
