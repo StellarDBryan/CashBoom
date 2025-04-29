@@ -1,19 +1,20 @@
 import { Questionnaire } from "@/app/api/data";
-import { Button, Card, CardBody, CardFooter, CardHeader, Progress } from "@heroui/react";
+import { Card, CardBody, CardFooter, CardHeader, Progress } from "@heroui/react";
+import Link from "next/link";
 
 
 export function QuestionnaireCard({ questionnaire }: { questionnaire: Questionnaire }){
 
     return(
-        <Card as={Button} className="w-1/3 bg-gray-50 roumded-md drop-shadow-md">
+        <Card as={Link} href={`/questionnaire/${questionnaire.id}`} className="w-full sm:w-[47%] md:w-[45%] lg:w-[31.5%] p-1 bg-gray-50 roumded-md shadow-neutral-400 shadow-lg hover:shadow-xl hover:shadow-green-300 hover:-translate-y-1 transition-all duration-200 ease-in-out transform">
             <CardHeader className="pb-0">
                 {questionnaire.icon}
             </CardHeader>
-            <CardBody className="flex flex-col gap-1">
-                <h6 className="text-[1.1rem] text-green-800 font-semibold truncate">
+            <CardBody className="flex flex-col gap-2">
+                <h6 className="text-[1.1rem] md:text-[1.2rem] text-green-800 font-semibold text-wrap line-clamp-2 truncate">
                     {questionnaire.title}
                 </h6>
-                <p className="text-regular text-gray-600 font-medium truncate ">
+                <p className="text-[0.9rem] md:text-regular text-gray-600 font-medium text-wrap line-clamp-2 truncate ">
                     {questionnaire.intro}
                 </p>
                 <Progress />

@@ -1,5 +1,14 @@
+import { questionnaires } from "@/app/api/data"
 
+export default function Page({ params }: { params: { slug: number } }) {
 
-// export default function Page({ params }: { params: { slug: string } }) {
-//     return <h1>My Page</h1>
-//   }
+    const questionnaire = questionnaires.find(q => q.id === params.slug);
+
+    return(
+        <main>
+            <div>
+                {questionnaire?.title}
+            </div>
+        </main>
+    );
+  }
