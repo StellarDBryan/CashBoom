@@ -21,7 +21,7 @@ const config: Config = {
       'h3': '2.074rem',
       'h4': '1.728rem',
       'h5': '1.44rem',
-      'h6': '1.2rem', 
+      'h6': '1.25rem', 
       'regular': '1rem', 
       'sm1': '0.833rem', 
       'sm2': '0.694rem'
