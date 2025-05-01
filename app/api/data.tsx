@@ -15,9 +15,28 @@ export interface Questionnaire {
     questions: question[]
 }
 
-interface UserAnswers {
+export interface Challenge {
+  id: number, 
+  title: string, 
+  description: string, 
+  type: string, 
+  required: number,
+  reward: number
+}
+
+interface QuestionnaireAnswers {
   questionnaireId: number, 
   answersGiven: number[]
+}
+
+interface ChallengesProgress {
+  challengeId: number, 
+  progress: number
+}
+
+export interface UsersAnswered {
+  questionnaires: QuestionnaireAnswers[], 
+  challenges: ChallengesProgress[]
 }
 
 export const levels = [
@@ -174,6 +193,50 @@ export const questionnaires: Questionnaire[] = [
   }
 ];
 
-export const userAnswers: UserAnswers[] = [
-
+export const challenges: Challenge[] = [
+  {
+    id: 1,
+    title: "Completar una lección", 
+    description: "Completa al menos una lección financiera para ganar puntos extra.", 
+    type: "Cuestionario", 
+    required: 1, 
+    reward: 30
+  }, 
+  {
+    id: 2,
+    title: "Racha de 3 días", 
+    description: "Mantén una racha de aprendizaje de 3 días consecutivos.", 
+    type: "Días de racha", 
+    required: 3, 
+    reward: 30
+  }, 
+  {
+    id: 3, 
+    title: "Responder correctamente 10 preguntas", 
+    description: "Responde correctamente a 10 preguntas en cualquier lección.", 
+    type: "Preguntas", 
+    required: 10, 
+    reward: 25
+  }, 
+  {
+    id: 4, 
+    title: "Desbloquear 3 lecciones", 
+    description: "Desbloquea 3 lecciones diferentes completando las anteriores. ", 
+    type: "Lecciones desbloqueadas", 
+    required: 3, 
+    reward: 75
+  }, 
+  {
+    id: 5, 
+    title: "Invitar a un amigo", 
+    description: "Invita a un amigo a unirse a CashBoom y ambos ganarán puntos.", 
+    type: "Invitación", 
+    required: 1, 
+    reward: 100
+  }
 ];
+
+export const userAnswers: UsersAnswered = {
+  questionnaires: [], 
+  challenges: []
+};
