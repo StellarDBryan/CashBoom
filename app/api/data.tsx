@@ -15,9 +15,28 @@ export interface Questionnaire {
     questions: question[]
 }
 
-interface UserAnswers {
+export interface Challenge {
+  id: number, 
+  title: string, 
+  description: string, 
+  type: string, 
+  required: number,
+  reward: number
+}
+
+interface QuestionnaireAnswers {
   questionnaireId: number, 
   answersGiven: number[]
+}
+
+interface ChallengesProgress {
+  challengeId: number, 
+  progress: number
+}
+
+export interface UsersAnswered {
+  questionnaires: QuestionnaireAnswers[], 
+  challenges: ChallengesProgress[]
 }
 
 export const levels = [
@@ -174,6 +193,18 @@ export const questionnaires: Questionnaire[] = [
   }
 ];
 
-export const userAnswers: UserAnswers[] = [
-
+export const challenges: Challenge[] = [
+  {
+    id: 1,
+    title: "Completar una lección", 
+    description: "Completa al menos una lección financiera para ganar puntos extra.", 
+    type: "Cuestionario", 
+    required: 1, 
+    reward: 30
+  }
 ];
+
+export const userAnswers: UsersAnswered = {
+  questionnaires: [], 
+  challenges: []
+};
