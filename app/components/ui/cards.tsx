@@ -46,7 +46,7 @@ export function ChallengeCard({ challenge }: { challenge: Challenge }) {
                 </h6>
             </CardHeader>
             <CardBody className="flex flex-col gap-2">
-                <p className="text-[1rem] text-neutral-500 font-medium text-wrap truncate line-clamp-2">
+                <p className="text-[1rem] text-neutral-500 font-medium text-wrap truncate line-clamp-2 min-h-[48px]">
                     {challenge.description}
                 </p>
                 <div className="flex flex-row flex-nowrap items-center gap-2 text-yellow-400">
@@ -78,7 +78,7 @@ export function ChallengeCard({ challenge }: { challenge: Challenge }) {
                     radius="sm"
                     className={`ml-auto font-semibold text-[1rem]
                         ${userProgress === challenge.required 
-                            ? 'bg-yellow-400 text-green-600' 
+                            ? 'bg-green-600 text-gray-50' 
                             : 'bg-transparent text-neutral-900'
                     } `}>
                     {userProgress === challenge.required

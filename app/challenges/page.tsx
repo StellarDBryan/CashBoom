@@ -12,10 +12,10 @@ const jersey = Jersey_15({
 export default function Page() {
     return (
         <main className='w-full px-4 md:px-8 py-5 bg-gray-50'>
-            <h2 className={`${jersey.className} text-[3.8rem] text-green-700`}>
+            <h2 className={`${jersey.className} text-[2.5rem] sm:text-[3.5rem] lg:text-[3.8rem] text-green-700`}>
                 Retos
             </h2>
-            <div className='w-full flex flex-row flex-wrap gap-3'>
+            <div className='w-full flex flex-row flex-wrap gap-3 mt-3 pb-5'>
                 {challenges.map((challenge, id) => (
                     <ChallengeCard key={id} challenge={challenge} />
                 ))}
