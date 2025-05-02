@@ -11,7 +11,7 @@ import { Session } from "next-auth";
 const content = {
     home: "Inicio", 
     challenges: "Retos", 
-    blog: "Blog", 
+    blog: "Tips", 
     store: "Tienda", 
     profile: "Ver Perfil", 
     logout: "Cerrar sesión"
