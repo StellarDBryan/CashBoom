@@ -35,7 +35,7 @@ export interface BlogPost {
 
 interface QuestionnaireAnswers {
   questionnaireId: number, 
-  answersGiven: number[]
+  answeredCorrectly: number
 }
 
 interface ChallengesProgress {

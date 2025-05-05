@@ -21,6 +21,7 @@ import { useState } from "react";
 import { Jersey_15 } from 'next/font/google'; 
 import { useRouter } from "next/navigation";
 import { useUserStats } from "@/app/UserStatsContext";
+import { saveCorrectAnswers } from "@/app/UserProgressContext";
 
 const jersey = Jersey_15({
     subsets: ["latin"], 
@@ -189,6 +190,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                                     onPress={() => {
                                         onClose();
                                         router.push('/home');
+                                        saveCorrectAnswers(questionnaire!.id, correctAnswers);
                                     }}
                                     className="flex flex-row items-center gap-2 py-2 px-6 rounded-lg bg-green-600 text-[1.1rem] font-semibold text-gray-50"
                                 >
@@ -217,6 +219,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                                     onPress={() => {
                                         onClose();
                                         router.push('/home');
+                                        saveCorrectAnswers(questionnaire!.id, correctAnswers);
                                     }}
                                     className="flex flex-row items-center gap-2 py-2 px-6 rounded-lg bg-green-600 text-[1.1rem] font-semibold text-gray-50"
                                 >
