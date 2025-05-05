@@ -1,9 +1,25 @@
 "use client";
 
 import { questionnaires } from "@/app/api/data"
-import { Card, CardHeader, CardBody, CardFooter, Radio, RadioGroup, cn, Button, Pagination, addToast } from "@heroui/react";
+import { Card, 
+    CardHeader, 
+    CardBody, 
+    CardFooter, 
+    Radio, 
+    RadioGroup, 
+    cn, 
+    Button, 
+    Pagination, 
+    addToast, 
+    useDisclosure, 
+    Modal,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter} from "@heroui/react";
 import { useState } from "react";
 import { Jersey_15 } from 'next/font/google'; 
+import { useRouter } from "next/navigation";
 
 const jersey = Jersey_15({
     subsets: ["latin"], 
@@ -11,12 +27,16 @@ const jersey = Jersey_15({
 });
 
 export default function Page({ params }: { params: { slug: string } }) {
+    const router = useRouter();
 
     const [ step, setStep ] = useState(0);
     const [ answers, setAnswers ] = useState<number[]>([]);
     const [ questionsAnswered, setQuestionsAnswered ] = useState<number[]>([]);
     const [ showCorrectAnswer, setShowCorrectAnswer ] = useState(false);
     const [ selectedAnswer, setSelectedAnswer ] = useState<number | null>(null);
+    const [ correctAnswers, setCorrectAnswers ] = useState(0);
+
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     const questionnaire = questionnaires.find(q => q.id === Number(params.slug));
     const currentQuestion = questionnaire?.questions[step];
@@ -33,6 +53,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                     color: 'success', 
                     timeout: 2000
                 });
+                setCorrectAnswers(prev => prev + 1);
             }
         }
     };
@@ -113,7 +134,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                             </svg>
                             Comprovar
                         </Button>}
-                        {showCorrectAnswer || isQuestionAnswered ? 
+                        {(showCorrectAnswer || isQuestionAnswered) && step < questionnaire!.questions.length - 1 ? 
                         <Button 
                             onPress={() => handlePageChange(step+1)}
                             className="flex flex-row flex-nowrap items-center group gap-2 px-6 py-4 text-[1.1rem] font-semibold text-neutral-700 bg-gray-200 rounded-lg">
@@ -122,6 +143,16 @@ export default function Page({ params }: { params: { slug: string } }) {
                                 <path fill="none" stroke="currentColor" strokeWidth="2" d="M2 12h20m-9-9l9 9l-9 9"/>
                             </svg>
                         </Button> : ''}
+                        {step === questionnaire!.questions.length - 1 && answers.length === questionnaire!.questions.length && 
+                            <Button 
+                                onPress={onOpen}
+                                className="flex flex-row items-center gap-2 py-2 px-6 rounded-lg bg-green-600 text-[1.1rem] font-semibold text-gray-50"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="m21.29 5.89l-10 10a.996.996 0 0 1-1.41 0l-2.83-2.83a.996.996 0 1 1 1.41-1.41l2.12 2.12l9.29-9.29a.996.996 0 0 1 1.41 0c.4.39.4 1.02.01 1.41m-5.52-3.15c-1.69-.69-3.61-.93-5.61-.57c-4.07.73-7.32 4.01-8.01 8.08a10.01 10.01 0 0 0 11.19 11.66c3.96-.51 7.28-3.46 8.32-7.31c.4-1.47.44-2.89.21-4.22c-.13-.8-1.12-1.11-1.7-.54c-.23.23-.33.57-.27.89c.22 1.33.12 2.75-.52 4.26c-1.16 2.71-3.68 4.7-6.61 4.97c-5.1.47-9.33-3.85-8.7-8.98c.43-3.54 3.28-6.42 6.81-6.91c1.73-.24 3.37.09 4.77.81a1.003 1.003 0 0 0 .93-1.78c-.27-.12-.54-.25-.81-.36"/>
+                                </svg>
+                                Finalizar
+                            </Button>}
                     </CardFooter>
                 </Card>
                 <Pagination 
@@ -133,6 +164,34 @@ export default function Page({ params }: { params: { slug: string } }) {
                     onChange={(page) => handlePageChange(page - 1)}
                 />
             </div>
+            <Modal isDismissable={false} isOpen={isOpen} onOpenChange={onOpenChange} >
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalHeader>
+                                ¡Lección Completada!
+                            </ModalHeader>
+                            <ModalBody>
+                                Has respondido correctamente {correctAnswers} de {questionnaire?.questions.length} preguntas
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button
+                                    onPress={() => {
+                                        onClose();
+                                        router.push('/home');
+                                    }}
+                                    className="flex flex-row items-center gap-2 py-2 px-6 rounded-lg bg-green-600 text-[1.1rem] font-semibold text-gray-50"
+                                >
+                                    Continuar
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" className="transform group-hover:translate-x-1 transition-transform ease-in-out duration-200">
+                                        <path fill="none" stroke="currentColor" strokeWidth="2" d="M2 12h20m-9-9l9 9l-9 9"/>
+                                    </svg>
+                                </Button>
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
         </main>
     );
   }
