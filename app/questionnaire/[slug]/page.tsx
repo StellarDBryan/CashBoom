@@ -1,7 +1,7 @@
 "use client";
 
 import { questionnaires } from "@/app/api/data"
-import { Card, CardHeader, CardBody, CardFooter, Radio, RadioGroup, cn, Button, Pagination } from "@heroui/react";
+import { Card, CardHeader, CardBody, CardFooter, Radio, RadioGroup, cn, Button, Pagination, addToast } from "@heroui/react";
 import { useState } from "react";
 import { Jersey_15 } from 'next/font/google'; 
 
@@ -26,17 +26,25 @@ export default function Page({ params }: { params: { slug: string } }) {
             setShowCorrectAnswer(true);
             setAnswers(prev => [...prev, selectedAnswer]);
             setQuestionsAnswered(prev => [...prev, step]);
+
+            if (selectedAnswer === currentQuestion?.answer) {
+                addToast({
+                    title: "¡Correcto! +10 CashPoints", 
+                    color: 'success', 
+                    timeout: 2000
+                });
+            }
         }
     };
 
     const handlePageChange = (newStep: number) => {
-        if (!questionsAnswered.includes(step) && selectedAnswer !== null) {
-            setAnswers(prev => [...prev, selectedAnswer]);
-            setQuestionsAnswered(prev => [...prev, step]);
-        }
         setStep(newStep);
         setShowCorrectAnswer(false);
-        setSelectedAnswer(null);
+        if (questionsAnswered.includes(newStep)) {
+            setSelectedAnswer(answers[questionsAnswered.indexOf(newStep)]);
+        } else {
+            setSelectedAnswer(null);
+        }
     };
 
     const isQuestionAnswered = questionsAnswered.includes(step);
@@ -105,7 +113,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                             </svg>
                             Comprovar
                         </Button>}
-                        {showCorrectAnswer && 
+                        {showCorrectAnswer || isQuestionAnswered ? 
                         <Button 
                             onPress={() => handlePageChange(step+1)}
                             className="flex flex-row flex-nowrap items-center group gap-2 px-6 py-4 text-[1.1rem] font-semibold text-neutral-700 bg-gray-200 rounded-lg">
@@ -113,7 +121,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" className="transform group-hover:translate-x-1 transition-transform ease-in-out duration-200">
                                 <path fill="none" stroke="currentColor" strokeWidth="2" d="M2 12h20m-9-9l9 9l-9 9"/>
                             </svg>
-                        </Button>}
+                        </Button> : ''}
                     </CardFooter>
                 </Card>
                 <Pagination 
