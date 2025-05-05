@@ -5,7 +5,7 @@ export function Providers({children}: { children: React.ReactNode }) {
   return (
     <SessionProvider>
       <HeroUIProvider>
-        <ToastProvider placement='top-right' />
+        <ToastProvider toastOffset={72} placement='top-right' />
         {children}
       </HeroUIProvider>
     </SessionProvider>

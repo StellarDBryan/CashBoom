@@ -164,7 +164,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                     onChange={(page) => handlePageChange(page - 1)}
                 />
             </div>
-            <Modal isDismissable={false} isOpen={isOpen} onOpenChange={onOpenChange} >
+            <Modal placement="center" isDismissable={false} isOpen={isOpen} onOpenChange={onOpenChange} >
                 <ModalContent>
                     {(onClose) => (
                         <>
