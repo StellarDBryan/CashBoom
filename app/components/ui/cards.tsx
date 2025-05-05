@@ -1,10 +1,25 @@
+"use client";
+
 import { BlogPost, Challenge, Questionnaire, userAnswers } from "@/app/api/data";
+import { getUserAnswers } from "@/app/UserProgressContext";
 import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Progress } from "@heroui/react";
 import Link from "next/link";
-// import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export function QuestionnaireCard({ questionnaire }: { questionnaire: Questionnaire }){
+
+    const [progress, setProgress] = useState<number | null>(null);
+    const [isClient, setIsClient] = useState(false); // <- Flag para saber si ya estás en cliente
+
+    useEffect(() => {
+        setIsClient(true);
+        const data = getUserAnswers();
+        const entry = data.questionnaires.find(q => q.questionnaireId === questionnaire.id)
+        setProgress(entry?.answeredCorrectly || 0)
+    }, []);
+
+    if (!isClient) return null;
 
     return(
         <Card as={Link} href={`/questionnaire/${questionnaire.id}`} className="w-full sm:w-[47%] md:w-[45%] lg:w-[31.5%] p-1 bg-gray-50 rounded-2xl shadow-neutral-400 shadow-lg hover:shadow-xl hover:shadow-green-300 hover:-translate-y-1 transition-all duration-200 ease-in-out transform">
@@ -18,14 +33,22 @@ export function QuestionnaireCard({ questionnaire }: { questionnaire: Questionna
                 <p className="text-[0.9rem] md:text-regular text-gray-600 font-medium text-wrap line-clamp-2 truncate ">
                     {questionnaire.intro}
                 </p>
-                <Progress />
+                <Progress 
+                    value={progress ? (progress * 100)/questionnaire.questions.length : 0} 
+                    size="md"
+                    radius="sm"  
+                    classNames={{
+                        track: 'h-[9px]',
+                        indicator: 'bg-gradient-to-r from-green-400 to-yellow-300 h-[9px]'
+                    }}  
+                />
             </CardBody>
             <CardFooter className="flex flex-row items-center justify-between text-sm1">
                 <p className="text-neutral-600">
-                    0% Completado
+                    {progress ? (progress * 100)/questionnaire.questions.length : 0}% Completado
                 </p>
                 <p className="text-neutral-600">
-                    0/{questionnaire.questions.length} preguntas
+                    {progress ? progress : 0}/{questionnaire.questions.length} preguntas
                 </p>
             </CardFooter>
         </Card>
