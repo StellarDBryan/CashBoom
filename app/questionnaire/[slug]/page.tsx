@@ -20,6 +20,7 @@ import { Card,
 import { useState } from "react";
 import { Jersey_15 } from 'next/font/google'; 
 import { useRouter } from "next/navigation";
+import { useUserStats } from "@/app/UserStatsContext";
 
 const jersey = Jersey_15({
     subsets: ["latin"], 
@@ -37,6 +38,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     const [ correctAnswers, setCorrectAnswers ] = useState(0);
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const { lives, loseLife, gainPoints } = useUserStats();
 
     const questionnaire = questionnaires.find(q => q.id === Number(params.slug));
     const currentQuestion = questionnaire?.questions[step];
@@ -53,7 +55,15 @@ export default function Page({ params }: { params: { slug: string } }) {
                     color: 'success', 
                     timeout: 2000
                 });
+                gainPoints(10);
                 setCorrectAnswers(prev => prev + 1);
+            } else {
+                loseLife();
+                addToast({
+                    title: "¡Incorrecto! -1 Vida", 
+                    color: 'danger', 
+                    timeout: 2000
+                });
             }
         }
     };
@@ -164,6 +174,34 @@ export default function Page({ params }: { params: { slug: string } }) {
                     onChange={(page) => handlePageChange(page - 1)}
                 />
             </div>
+            <Modal placement="center" isOpen={lives === 0} isDismissable={false} hideCloseButton>
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalHeader>
+                                Perdiste
+                            </ModalHeader>
+                            <ModalBody>
+                                ¡Perdiste todas tus vidas! Podrás continuar cuando obtegas más vidas. 
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button
+                                    onPress={() => {
+                                        onClose();
+                                        router.push('/home');
+                                    }}
+                                    className="flex flex-row items-center gap-2 py-2 px-6 rounded-lg bg-green-600 text-[1.1rem] font-semibold text-gray-50"
+                                >
+                                    Continuar
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" className="transform group-hover:translate-x-1 transition-transform ease-in-out duration-200">
+                                        <path fill="none" stroke="currentColor" strokeWidth="2" d="M2 12h20m-9-9l9 9l-9 9"/>
+                                    </svg>
+                                </ Button>
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
             <Modal placement="center" isDismissable={false} isOpen={isOpen} onOpenChange={onOpenChange} >
                 <ModalContent>
                     {(onClose) => (
