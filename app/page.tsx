@@ -87,6 +87,33 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <section className="flex flex-row items-center justify-start py-10 px-5 md:py-0 md:px-10 overflow-hidden">
+          <div className="flex flex-col-reverse md:flex-row items-center gap-10">
+            <Image
+              src='/images/common/laptopMan.svg'
+              alt='Ending Image'
+              width={100}
+              height={100}
+              className="w-[350px] lg:w-[500px]"
+            />
+            <div className="w-4/5 md:w-1/2 flex flex-col gap-3 md:flex-shrink-0">
+              <h2 className="font-extrabold text-center md:text-start text-green-700 text-h4 lg:text-h3">
+                Empieza hoy a construir tu futuro financiero
+              </h2>
+              <Button
+                as={Link}
+                href="/login"
+                className="w-auto flex flex-row flex-nowrap items-center gap-2 rounded-md px-6 py-2 text-[1.1rem] lg:text-[1.3rem] font-semibold bg-gradient-to-r from-green-500 to-yellow-400 text-gray-50"
+              >
+                Empieza gratis
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" className="transform group-hover:translate-x-1 transition-transform ease-in-out duration-200">
+                    <path fill="none" stroke="currentColor" strokeWidth="2" d="M2 12h20m-9-9l9 9l-9 9"/>
+                </svg>
+              </Button>
+            </div>
+          </div>
+      </section>
       
     </main>
   );
