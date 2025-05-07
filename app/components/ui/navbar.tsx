@@ -34,7 +34,7 @@ export default function Navbar(){
         </>
         : <>
             <nav className="fixed top-0 flex flex-row flex-nowrap gap-3 lg:gap-5 items-center justify-between z-50 bg-gray-50 text-neutral-600 w-full h-[70px] md:h-[75px] md:px-5 overflow-hidden">
-                <Link href="/home">
+                <Link href={session ? '/home' : '/'}>
                     <Image 
                         src="/images/logos/Logotipo_h1.png"
                         alt="CashBoom Logo"
@@ -177,7 +177,9 @@ function UserAvatar({ session, lives, points, streak }: { session: Session, live
                     </Button>
                 </DropdownItem>
                 <DropdownItem key={'profile'} className="text-neutral-800 font-medium flex flex-row flex-nowrap ">
-                    <Button variant="light" onPress={() => signOut()}>
+                    <Button variant="light" onPress={() => signOut({
+                        redirectTo: "/login"
+                    })}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fillRule="evenodd" d="M6 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3zm10.293 5.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L18.586 13H10a1 1 0 1 1 0-2h8.586l-2.293-2.293a1 1 0 0 1 0-1.414" clipRule="evenodd"/>
                         </svg>
                         {content.logout}
