@@ -230,6 +230,139 @@ export const questionnaires: Questionnaire[] = [
           </g> 
         </svg>
     )
+  }, 
+  {
+    id: 2, 
+    levelId: 1, 
+    title: "Ahorro Inteligente", 
+    intro: "Descubre estrategias para ahorrar eficientemente. ", 
+    questions: [
+      {
+        id: 11, 
+        question: "¿Qué es la regla 50/30/20 para el ahorro?", 
+        description: "Esta regla puede ayudarte a organizar tus finanzas de manera efectiva. Selecciona la explicación correcta:", 
+        options: [
+          "Ahorrar el 50% de tus ingresos, gastar 30% en ocio y 20% en necesidades básicas.",
+          "Usar 50% para necesidades básicas, 30% para deseos personales y 20% para ahorro e inversión.",
+          "Invertir 50% en la bolsa, 30% en bienes raíces y mantener 20% en efectivo.",
+          "Pagar 50% de tus deudas, usar 30% para gastos diarios y 20% para ahorros de emergencia."
+        ], 
+        answer: 1
+      }, 
+      {
+        id: 12, 
+        question: "¿Qué es un fondo de emergencia?", 
+        description: "Un fondo de emergencia es fundamental para la estabilidad financiera. ¿Cuál de estas afirmaciones es correcta?", 
+        options: [
+          "Dinero que solo se usa para vacaciones y lujos.",
+          "Un préstamo que puedes pedir al banco en caso de emergencia.",
+          "Dinero ahorrado para cubrir gastos inesperados o pérdida de ingresos.",
+          "Una inversión de alto riesgo que solo debe usarse en casos extremos."
+        ], 
+        answer: 2
+      }, 
+      {
+        id: 13, 
+        question: "¿Cuánto se recomienda tener en un fondo de emergencia?", 
+        description: "Expertos financieros suelen recomendar una cantidad específica. ¿Cuál es la recomendación más común?",
+        options: [
+          "El equivalente a 1 semana de gastos.",
+          "Entre 3 y 6 meses de gastos básicos.",
+          "Al menos 2 años completos de salario.",
+          "El 10% de tus ingresos anuales."
+        ], 
+        answer: 1
+      }, 
+      {
+        id: 14, 
+        question: "¿Qué es el interés compuesto?", 
+        description: "El interés compuesto es conocido como la \"octava maravilla del mundo\". ¿Qué lo hace tan especial?",
+        options: [
+          "Es un tipo de interés que solo ofrecen los bancos más grandes.",
+          "Es ganar intereses sobre el capital inicial más los intereses acumulados previamente.",
+          "Es un interés que se paga solo cuando cumples ciertas condiciones del banco.",
+          "Es una tasa preferencial que se ofrece a personas con altos ingresos."
+        ], 
+        answer: 1
+      }, 
+      {
+        id: 15, 
+        question: "¿Qué es el \"costo de oportunidad\" en el ahorro?", 
+        description: "Este concepto te ayuda a evaluar tus decisiones financieras. ¿Qué significa?",
+        options: [
+          "El costo adicional que pagas por ahorrar en una cuenta bancaria premium.",
+          "El valor de lo que renuncias cuando tomas una decisión financiera en lugar de otra.",
+          "El costo de la consulta con un asesor financiero profesional.",
+          "El valor exacto del dinero que podrías ganar si inviertes en bolsa."
+        ], 
+        answer: 1
+      }, {
+        id: 16, 
+        question: "¿Qué son las metas financieras SMART?", 
+        description: "Las metas SMART te ayudan a definir objetivos de ahorro efectivos. ¿Qué significa el acrónimo SMART?",
+        options: [
+          "Simple, Mágico, Asombroso, Rápido, Trascendental",
+          "Específico, Medible, Alcanzable, Relevante, Temporal",
+          "Sostenible, Monetario, Ambicioso, Robusto, Tentador",
+          "Sistemático, Memorable, Adaptable, Riguroso, Tangible"
+        ],
+        answer: 1
+      }, 
+      {
+        id: 17, 
+        question: "¿Qué método de ahorro se conoce como \"Pagar primero a ti mismo\"?", 
+        description: "Esta es una estrategia efectiva para asegurar el ahorro. ¿En qué consiste?",
+        options: [
+          "Gastar primero en tus gustos personales antes de pagar cuentas.",
+          "Separar una parte de tus ingresos para ahorro antes de gastar en cualquier otra cosa.",
+          "Darte un bono cada vez que cumples una meta financiera.",
+          "Pagar todas tus deudas antes de comenzar a ahorrar."
+        ], 
+        answer: 1
+      }, 
+      {
+        id: 18, 
+        question: "¿Qué es el ahorro automático?", 
+        description: "Esta técnica facilita el hábito del ahorro. ¿En qué consiste?", 
+        options: [
+          "Un robot que controla tus gastos y te impide gastar de más.",
+          "Configurar transferencias programadas de tu cuenta corriente a tu cuenta de ahorro.",
+          "Una máquina que convierte automáticamente las monedas en billetes.",
+          "Un sistema que redondea tus compras al peso más cercano."
+        ], 
+        answer: 1
+      }, 
+      {
+        id: 19, 
+        question: "¿Qué es la \"Regla de 72\" en finanzas?", 
+        description: "Esta regla es útil para planificar el crecimiento de tus ahorros. ¿Para qué sirve?",
+        options: [
+          "Determina que debes ahorrar 72% de tus ingresos para jubilarte cómodamente.",
+          "Estima el tiempo que tardará tu dinero en duplicarse dividiendo 72 entre la tasa de interés anual.",
+          "Establece que necesitas ahorrar durante 72 meses antes de hacer cualquier inversión.",
+          "Define que 72% de tus ahorros deben estar en inversiones seguras y 28% en inversiones de riesgo."
+        ], 
+        answer: 1
+      }, 
+      {
+        id: 20, 
+        question: "¿Qué es la liquidez en relación con el ahorro?", 
+        description: "Al elegir diferentes instrumentos de ahorro, la liquidez es un factor importante. ¿Qué significa esto?",
+        options: [
+          "La cantidad total de dinero que tienes ahorrado.",
+          "La facilidad y rapidez con la que puedes convertir tus ahorros en efectivo sin perder valor.",
+          "El tipo de moneda en que guardas tus ahorros (dólares, euros, etc.).",
+          "El banco o institución financiera donde tienes tu cuenta de ahorro."
+        ],
+        answer: 1
+      }
+    ], 
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="text-gray-50 bg-blue-800 p-2 rounded-full w-[40px] h-[40px] md:w-[50px] md:h-[50px]">
+        <path fill="currentColor" d="M10.802 22.5H5.198l-.788-3.544C3.09 18.37 1.444 17.353.295 16.21L0 15.916V8.501h1.934l.953-1.59l-1.248-3.12l1.134-.265c1.114-.258 2.57-.193 3.994.592l.02-.011a23 23 0 0 1 .712-.408a15 15 0 0 1 1.504-.741c.457-.185.892-.34 1.314-.468a6.5 6.5 0 0 0 12.25 4.35l.093.16c2.465 4.268 1.425 9.596-2.226 12.657l-.632 2.844h-5.604l-.445-2h-2.506zM4.5 11.5h2.004V9.496H4.5z"/>
+        <path fill="currentColor" d="M16.5 0a4.5 4.5 0 1 1 0 9a4.5 4.5 0 0 1 0-9"/>
+      </svg>
+    )
   }
 ];
 
