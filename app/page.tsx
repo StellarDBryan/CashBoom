@@ -1,6 +1,29 @@
-import { Button } from "@heroui/react";
+import { Button, Card, CardBody, CardFooter } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+
+const benefits = [
+  {
+    src: '/images/common/online-learning.png', 
+    alt: 'Online Learning', 
+    phrase: 'Aprende mientras juegas'
+  }, 
+  {
+    src: '/images/common/expertise.png', 
+    alt: 'Expertise', 
+    phrase: 'Educación hecha por expertos'
+  }, 
+  {
+    src: '/images/common/fire.png', 
+    alt: 'Flame', 
+    phrase: 'Sistema de rachas y recompensas'
+  }, 
+  {
+    src: '/images/common/learning.png', 
+    alt: 'Learning', 
+    phrase: 'Desde lo básico hasta inversiones'
+  }
+];
 
 
 export default function Home() {
@@ -20,7 +43,7 @@ export default function Home() {
           <Button
             as={Link}
             href="/login"
-            className="w-auto flex flex-row flex-nowrap items-center gap-2 rounded-md px-6 py-2 text-[1.1rem] lg:text-[1.3rem] font-semibold bg-green-600 text-gray-50"
+            className="w-auto flex flex-row flex-nowrap items-center gap-2 rounded-md px-6 py-2 text-[1.1rem] lg:text-[1.3rem] font-semibold bg-gradient-to-r from-green-500 to-yellow-400 text-gray-50"
           >
             Empieza gratis
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" className="transform group-hover:translate-x-1 transition-transform ease-in-out duration-200">
@@ -31,10 +54,38 @@ export default function Home() {
         <Image
           src='/images/common/landingImage.png'
           alt="App Showcase"
+          loading="lazy"
           width={800}
           height={600}
           className="w-[800px] sm:w-[550px] lg:w-[750px] h-auto"
         />
+      </section>
+
+      <section className="flex flex-col items-center justify-center py-10 gap-10 bg-gradient-to-b from-green-100 to-gray-50 w-full overflow-hidden">
+        <h2 className="text-h5 sm:text-h3 md:text-h2 z-10 font-extrabold text-green-600 relative">
+          ¿Por qué usar CashBoom?
+          <span className="text-yellow-300 -z-10 absolute inset-0 transform -translate-x-[3px] -translate-y-[2px]">
+            ¿Por qué usar CashBoom?
+          </span>
+        </h2>
+        <div className="flex flex-row flex-wrap gap-5 items-center justify-center">
+          {benefits.map((benefit, id) => (
+            <Card key={`Benefit ${id}`} className="rounded-2xl shadow-lg w-[160px] sm:w-[170px] md:w-[200px] lg:w-[250px] py-5 bg-gradient-to-b from-gray-50 to-yellow-50">
+              <CardBody className="mx-auto">
+                <Image 
+                  src={benefit.src}
+                  alt={`${benefit.alt} Icon`}
+                  width={100}
+                  height={100}
+                  className="w-[70%] mx-auto"
+                />
+              </CardBody>
+              <CardFooter className="flex justify-center text-center font-semibold text-[1rem] sm:text-[1.1rem] md:text-[1.25rem] lg:text-[1.5rem] text-green-600">
+                {benefit.phrase}
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
       </section>
       
     </main>
